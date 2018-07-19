@@ -107,7 +107,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 
 	for(int i = 0; i < num_particles; ++i)
 	{
-		double particle_weight = 1.0;//particles[i].weight;
+		double particle_weight = particles[i].weight;
 		double x_part = particles[i].x;
 		double y_part = particles[i].y;
 		double theta = particles[i].theta;
@@ -176,10 +176,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 			// calculate weight using normalization terms and exponent
 			double weight = gauss_norm * exp(-exponent);
 
-			if(weight > 0.0)
-			{
-				particle_weight *= weight;
-			}
+			particle_weight *= weight;
 		}
 
 		particles[i].weight = particle_weight;
