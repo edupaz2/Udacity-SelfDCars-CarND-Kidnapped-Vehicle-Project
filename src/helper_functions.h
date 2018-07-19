@@ -48,6 +48,17 @@ struct LandmarkObs {
 	double y;			// Local (vehicle coordinates) y position of landmark observation [m]
 };
 
+struct ObservationToLandmark {
+	int landmark_id;	// Id of matching landmark in the map.
+	int obs_id;			// Id of the observation in the vector of observations
+	double distance;	// Distance from observation to Landmark.
+
+	bool operator<(const ObservationToLandmark& a) const
+	{
+		return distance < a.distance;
+	}
+};
+
 /*
  * Computes the Euclidean distance between two 2D points.
  * @param (x1,y1) x and y coordinates of first point
